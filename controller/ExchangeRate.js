@@ -1,14 +1,16 @@
 var RestClient = require('../API/Restclient');
 
-exports.displayTableData = function displayTableData2(session, username){
-    var url = 'http://walapp.azurewebsites.net/tables/CurrencyTable';
-    
-    RestClient.getTableData(url, session, username, handleTableData)
+exports.showExchangeRate = function (session, username){
+    var from="NZD", to="USD";
+    var url = "http://apilayer.net/api/live?access_key=8db6106aae6236f2cee4620f4965f956"
+                +"&source="+from 
+                +"&currencies="+to;
+    RestClient.getExchangeRate(url, session, handleExchangeRate)
 };
 
-function handleTableData(message, session, username) {
+function handleExchangeRate(message, session) {
     var currencyTableData = JSON.parse(message);
-    console.log(currencyTableData); 
+    session.send(message);
     
     // var array = [];
     
@@ -20,4 +22,4 @@ function handleTableData(message, session, username) {
     // }
     
     //session.send('');                
-}
+} 
