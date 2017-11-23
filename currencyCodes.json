@@ -1,0 +1,650 @@
+[
+	{
+		"canonicalForm": "AED",
+		"list": ["United Arab Emirates Dirham"]
+	},
+	{
+		"canonicalForm": "AFN",
+		"list": ["Afghanistan Afghani"]
+	},
+	{
+		"canonicalForm": "ALL",
+		"list": ["Albania Lek"]
+	},
+	{
+		"canonicalForm": "AMD",
+		"list": ["Armenia Dram"]
+	},
+	{
+		"canonicalForm": "ANG",
+		"list": ["Netherlands Antilles Guilder"]
+	},
+	{
+		"canonicalForm": "AOA",
+		"list": ["Angola Kwanza"]
+	},
+	{
+		"canonicalForm": "ARS",
+		"list": ["Argentina Peso"]
+	},
+	{
+		"canonicalForm": "AUD",
+		"list": ["Australia Dollar"]
+	},
+	{
+		"canonicalForm": "AWG",
+		"list": ["Aruba Guilder"]
+	},
+	{
+		"canonicalForm": "AZN",
+		"list": ["Azerbaijan Manat"]
+	},
+	{
+		"canonicalForm": "BAM",
+		"list": ["Bosnia and Herzegovina Convertible Marka"]
+	},
+	{
+		"canonicalForm": "BBD",
+		"list": ["Barbados Dollar"]
+	},
+	{
+		"canonicalForm": "BDT",
+		"list": ["Bangladesh Taka"]
+	},
+	{
+		"canonicalForm": "BGN",
+		"list": ["Bulgaria Lev"]
+	},
+	{
+		"canonicalForm": "BHD",
+		"list": ["Bahrain Dinar"]
+	},
+	{
+		"canonicalForm": "BIF",
+		"list": ["Burundi Franc"]
+	},
+	{
+		"canonicalForm": "BMD",
+		"list": ["Bermuda Dollar"]
+	},
+	{
+		"canonicalForm": "BND",
+		"list": ["Brunei Darussalam Dollar"]
+	},
+	{
+		"canonicalForm": "BOB",
+		"list": ["Bolivia Bolíviano"]
+	},
+	{
+		"canonicalForm": "BRL",
+		"list": ["Brazil Real"]
+	},
+	{
+		"canonicalForm": "BSD",
+		"list": ["Bahamas Dollar"]
+	},
+	{
+		"canonicalForm": "BTN",
+		"list": ["Bhutan Ngultrum"]
+	},
+	{
+		"canonicalForm": "BWP",
+		"list": ["Botswana Pula"]
+	},
+	{
+		"canonicalForm": "BYN",
+		"list": ["Belarus Ruble"]
+	},
+	{
+		"canonicalForm": "BZD",
+		"list": ["Belize Dollar"]
+	},
+	{
+		"canonicalForm": "CAD",
+		"list": ["Canada Dollar"]
+	},
+	{
+		"canonicalForm": "CDF",
+		"list": ["Congo/Kinshasa Franc"]
+	},
+	{
+		"canonicalForm": "CHF",
+		"list": ["Switzerland Franc"]
+	},
+	{
+		"canonicalForm": "CLP",
+		"list": ["Chile Peso"]
+	},
+	{
+		"canonicalForm": "CNY",
+		"list": ["China Yuan Renminbi"]
+	},
+	{
+		"canonicalForm": "COP",
+		"list": ["Colombia Peso"]
+	},
+	{
+		"canonicalForm": "CRC",
+		"list": ["Costa Rica Colon"]
+	},
+	{
+		"canonicalForm": "CUC",
+		"list": ["Cuba Convertible Peso"]
+	},
+	{
+		"canonicalForm": "CUP",
+		"list": ["Cuba Peso"]
+	},
+	{
+		"canonicalForm": "CVE",
+		"list": ["Cape Verde Escudo"]
+	},
+	{
+		"canonicalForm": "CZK",
+		"list": ["Czech Republic Koruna"]
+	},
+	{
+		"canonicalForm": "DJF",
+		"list": ["Djibouti Franc"]
+	},
+	{
+		"canonicalForm": "DKK",
+		"list": ["Denmark Krone"]
+	},
+	{
+		"canonicalForm": "DOP",
+		"list": ["Dominican Republic Peso"]
+	},
+	{
+		"canonicalForm": "DZD",
+		"list": ["Algeria Dinar"]
+	},
+	{
+		"canonicalForm": "EGP",
+		"list": ["Egypt Pound"]
+	},
+	{
+		"canonicalForm": "ERN",
+		"list": ["Eritrea Nakfa"]
+	},
+	{
+		"canonicalForm": "ETB",
+		"list": ["Ethiopia Birr"]
+	},
+	{
+		"canonicalForm": "EUR",
+		"list": ["Euro Member Countries"]
+	},
+	{
+		"canonicalForm": "FJD",
+		"list": ["Fiji Dollar"]
+	},
+	{
+		"canonicalForm": "FKP",
+		"list": ["Falkland Islands (Malvinas) Pound"]
+	},
+	{
+		"canonicalForm": "GBP",
+		"list": ["United Kingdom Pound"]
+	},
+	{
+		"canonicalForm": "GEL",
+		"list": ["Georgia Lari"]
+	},
+	{
+		"canonicalForm": "GGP",
+		"list": ["Guernsey Pound"]
+	},
+	{
+		"canonicalForm": "GHS",
+		"list": ["Ghana Cedi"]
+	},
+	{
+		"canonicalForm": "GIP",
+		"list": ["Gibraltar Pound"]
+	},
+	{
+		"canonicalForm": "GMD",
+		"list": ["Gambia Dalasi"]
+	},
+	{
+		"canonicalForm": "GNF",
+		"list": ["Guinea Franc"]
+	},
+	{
+		"canonicalForm": "GTQ",
+		"list": ["Guatemala Quetzal"]
+	},
+	{
+		"canonicalForm": "GYD",
+		"list": ["Guyana Dollar"]
+	},
+	{
+		"canonicalForm": "HKD",
+		"list": ["Hong Kong Dollar"]
+	},
+	{
+		"canonicalForm": "HNL",
+		"list": ["Honduras Lempira"]
+	},
+	{
+		"canonicalForm": "HRK",
+		"list": ["Croatia Kuna"]
+	},
+	{
+		"canonicalForm": "HTG",
+		"list": ["Haiti Gourde"]
+	},
+	{
+		"canonicalForm": "HUF",
+		"list": ["Hungary Forint"]
+	},
+	{
+		"canonicalForm": "IDR",
+		"list": ["Indonesia Rupiah"]
+	},
+	{
+		"canonicalForm": "ILS",
+		"list": ["Israel Shekel"]
+	},
+	{
+		"canonicalForm": "IMP",
+		"list": ["Isle of Man Pound"]
+	},
+	{
+		"canonicalForm": "INR",
+		"list": ["India Rupee"]
+	},
+	{
+		"canonicalForm": "IQD",
+		"list": ["Iraq Dinar"]
+	},
+	{
+		"canonicalForm": "IRR",
+		"list": ["Iran Rial"]
+	},
+	{
+		"canonicalForm": "ISK",
+		"list": ["Iceland Krona"]
+	},
+	{
+		"canonicalForm": "JEP",
+		"list": ["Jersey Pound"]
+	},
+	{
+		"canonicalForm": "JMD",
+		"list": ["Jamaica Dollar"]
+	},
+	{
+		"canonicalForm": "JOD",
+		"list": ["Jordan Dinar"]
+	},
+	{
+		"canonicalForm": "JPY",
+		"list": ["Japan Yen"]
+	},
+	{
+		"canonicalForm": "KES",
+		"list": ["Kenya Shilling"]
+	},
+	{
+		"canonicalForm": "KGS",
+		"list": ["Kyrgyzstan Som"]
+	},
+	{
+		"canonicalForm": "KHR",
+		"list": ["Cambodia Riel"]
+	},
+	{
+		"canonicalForm": "KMF",
+		"list": ["Comorian Franc"]
+	},
+	{
+		"canonicalForm": "KPW",
+		"list": ["Korea (North) Won"]
+	},
+	{
+		"canonicalForm": "KRW",
+		"list": ["Korea (South) Won"]
+	},
+	{
+		"canonicalForm": "KWD",
+		"list": ["Kuwait Dinar"]
+	},
+	{
+		"canonicalForm": "KYD",
+		"list": ["Cayman Islands Dollar"]
+	},
+	{
+		"canonicalForm": "KZT",
+		"list": ["Kazakhstan Tenge"]
+	},
+	{
+		"canonicalForm": "LAK",
+		"list": ["Laos Kip"]
+	},
+	{
+		"canonicalForm": "LBP",
+		"list": ["Lebanon Pound"]
+	},
+	{
+		"canonicalForm": "LKR",
+		"list": ["Sri Lanka Rupee"]
+	},
+	{
+		"canonicalForm": "LRD",
+		"list": ["Liberia Dollar"]
+	},
+	{
+		"canonicalForm": "LSL",
+		"list": ["Lesotho Loti"]
+	},
+	{
+		"canonicalForm": "LYD",
+		"list": ["Libya Dinar"]
+	},
+	{
+		"canonicalForm": "MAD",
+		"list": ["Morocco Dirham"]
+	},
+	{
+		"canonicalForm": "MDL",
+		"list": ["Moldova Leu"]
+	},
+	{
+		"canonicalForm": "MGA",
+		"list": ["Madagascar Ariary"]
+	},
+	{
+		"canonicalForm": "MKD",
+		"list": ["Macedonia Denar"]
+	},
+	{
+		"canonicalForm": "MMK",
+		"list": ["Myanmar (Burma) Kyat"]
+	},
+	{
+		"canonicalForm": "MNT",
+		"list": ["Mongolia Tughrik"]
+	},
+	{
+		"canonicalForm": "MOP",
+		"list": ["Macau Pataca"]
+	},
+	{
+		"canonicalForm": "MRO",
+		"list": ["Mauritania Ouguiya"]
+	},
+	{
+		"canonicalForm": "MUR",
+		"list": ["Mauritius Rupee"]
+	},
+	{
+		"canonicalForm": "MVR",
+		"list": ["Maldives (Maldive Islands) Rufiyaa"]
+	},
+	{
+		"canonicalForm": "MWK",
+		"list": ["Malawi Kwacha"]
+	},
+	{
+		"canonicalForm": "MXN",
+		"list": ["Mexico Peso"]
+	},
+	{
+		"canonicalForm": "MYR",
+		"list": ["Malaysia Ringgit"]
+	},
+	{
+		"canonicalForm": "MZN",
+		"list": ["Mozambique Metical"]
+	},
+	{
+		"canonicalForm": "NAD",
+		"list": ["Namibia Dollar"]
+	},
+	{
+		"canonicalForm": "NGN",
+		"list": ["Nigeria Naira"]
+	},
+	{
+		"canonicalForm": "NIO",
+		"list": ["Nicaragua Cordoba"]
+	},
+	{
+		"canonicalForm": "NOK",
+		"list": ["Norway Krone"]
+	},
+	{
+		"canonicalForm": "NPR",
+		"list": ["Nepal Rupee"]
+	},
+	{
+		"canonicalForm": "NZD",
+		"list": ["New Zealand Dollar"]
+	},
+	{
+		"canonicalForm": "OMR",
+		"list": ["Oman Rial"]
+	},
+	{
+		"canonicalForm": "PAB",
+		"list": ["Panama Balboa"]
+	},
+	{
+		"canonicalForm": "PEN",
+		"list": ["Peru Sol"]
+	},
+	{
+		"canonicalForm": "PGK",
+		"list": ["Papua New Guinea Kina"]
+	},
+	{
+		"canonicalForm": "PHP",
+		"list": ["Philippines Peso"]
+	},
+	{
+		"canonicalForm": "PKR",
+		"list": ["Pakistan Rupee"]
+	},
+	{
+		"canonicalForm": "PLN",
+		"list": ["Poland Zloty"]
+	},
+	{
+		"canonicalForm": "PYG",
+		"list": ["Paraguay Guarani"]
+	},
+	{
+		"canonicalForm": "QAR",
+		"list": ["Qatar Riyal"]
+	},
+	{
+		"canonicalForm": "RON",
+		"list": ["Romania Leu"]
+	},
+	{
+		"canonicalForm": "RSD",
+		"list": ["Serbia Dinar"]
+	},
+	{
+		"canonicalForm": "RUB",
+		"list": ["Russia Ruble"]
+	},
+	{
+		"canonicalForm": "RWF",
+		"list": ["Rwanda Franc"]
+	},
+	{
+		"canonicalForm": "SAR",
+		"list": ["Saudi Arabia Riyal"]
+	},
+	{
+		"canonicalForm": "SBD",
+		"list": ["Solomon Islands Dollar"]
+	},
+	{
+		"canonicalForm": "SCR",
+		"list": ["Seychelles Rupee"]
+	},
+	{
+		"canonicalForm": "SDG",
+		"list": ["Sudan Pound"]
+	},
+	{
+		"canonicalForm": "SEK",
+		"list": ["Sweden Krona"]
+	},
+	{
+		"canonicalForm": "SGD",
+		"list": ["Singapore Dollar"]
+	},
+	{
+		"canonicalForm": "SHP",
+		"list": ["Saint Helena Pound"]
+	},
+	{
+		"canonicalForm": "SLL",
+		"list": ["Sierra Leone Leone"]
+	},
+	{
+		"canonicalForm": "SOS",
+		"list": ["Somalia Shilling"]
+	},
+	{
+		"canonicalForm": "SPL*",
+		"list": ["Seborga Luigino"]
+	},
+	{
+		"canonicalForm": "SRD",
+		"list": ["Suriname Dollar"]
+	},
+	{
+		"canonicalForm": "STD",
+		"list": ["São Tomé and Príncipe Dobra"]
+	},
+	{
+		"canonicalForm": "SVC",
+		"list": ["El Salvador Colon"]
+	},
+	{
+		"canonicalForm": "SYP",
+		"list": ["Syria Pound"]
+	},
+	{
+		"canonicalForm": "SZL",
+		"list": ["Swaziland Lilangeni"]
+	},
+	{
+		"canonicalForm": "THB",
+		"list": ["Thailand Baht"]
+	},
+	{
+		"canonicalForm": "TJS",
+		"list": ["Tajikistan Somoni"]
+	},
+	{
+		"canonicalForm": "TMT",
+		"list": ["Turkmenistan Manat"]
+	},
+	{
+		"canonicalForm": "TND",
+		"list": ["Tunisia Dinar"]
+	},
+	{
+		"canonicalForm": "TOP",
+		"list": ["Tonga Pa'anga"]
+	},
+	{
+		"canonicalForm": "TRY",
+		"list": ["Turkey Lira"]
+	},
+	{
+		"canonicalForm": "TTD",
+		"list": ["Trinidad and Tobago Dollar"]
+	},
+	{
+		"canonicalForm": "TVD",
+		"list": ["Tuvalu Dollar"]
+	},
+	{
+		"canonicalForm": "TWD",
+		"list": ["Taiwan New Dollar"]
+	},
+	{
+		"canonicalForm": "TZS",
+		"list": ["Tanzania Shilling"]
+	},
+	{
+		"canonicalForm": "UAH",
+		"list": ["Ukraine Hryvnia"]
+	},
+	{
+		"canonicalForm": "UGX",
+		"list": ["Uganda Shilling"]
+	},
+	{
+		"canonicalForm": "USD",
+		"list": ["United States Dollar"]
+	},
+	{
+		"canonicalForm": "UYU",
+		"list": ["Uruguay Peso"]
+	},
+	{
+		"canonicalForm": "UZS",
+		"list": ["Uzbekistan Som"]
+	},
+	{
+		"canonicalForm": "VEF",
+		"list": ["Venezuela Bolívar"]
+	},
+	{
+		"canonicalForm": "VND",
+		"list": ["Viet Nam Dong"]
+	},
+	{
+		"canonicalForm": "VUV",
+		"list": ["Vanuatu Vatu"]
+	},
+	{
+		"canonicalForm": "WST",
+		"list": ["Samoa Tala"]
+	},
+	{
+		"canonicalForm": "XAF",
+		"list": ["Communauté Financière Africaine (BEAC) CFA Franc BEAC"]
+	},
+	{
+		"canonicalForm": "XCD",
+		"list": ["East Caribbean Dollar"]
+	},
+	{
+		"canonicalForm": "XDR",
+		"list": ["International Monetary Fund (IMF) Special Drawing Rights"]
+	},
+	{
+		"canonicalForm": "XOF",
+		"list": ["Communauté Financière Africaine (BCEAO) Franc"]
+	},
+	{
+		"canonicalForm": "XPF",
+		"list": ["Comptoirs Français du Pacifique (CFP) Franc"]
+	},
+	{
+		"canonicalForm": "YER",
+		"list": ["Yemen Rial"]
+	},
+	{
+		"canonicalForm": "ZAR",
+		"list": ["South Africa Rand"]
+	},
+	{
+		"canonicalForm": "ZMW",
+		"list": ["Zambia Kwacha"]
+	},
+	{
+		"canonicalForm": "ZWD",
+		"list": ["Zimbabwe Dollar"]
+	}
+]
