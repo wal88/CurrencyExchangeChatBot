@@ -1,12 +1,18 @@
 var RestClient = require('../API/Restclient');
 
-exports.showExchangeRate = function (session, username, currencyEntities){
+exports.getConvertedAmount = function (session, username, currencyEntities, numberEntity){
     var from, to='';
 
-    if (currencyEntities.length==0) {
-        session.send("No currencies detected, please state currencies desired for exchange rates using three letter currency codes"); 
-        return; // end here if no currencies to work with
+    var errorMessage='';
+
+    // if no number, abort
+    if (numberEntity.length < 1) {
+        errorMessage="No amount found, to convert currency please tell me the amount (in numbers) that you want to convert and it's currency";
+    } else if (numberEntity.length > 1) {
+        errorMessage=''
     }
+        return; // end here
+    
     
     // if only one currency provided, give exchange rate against NZD by default
     if(currencyEntities.length == 1) {

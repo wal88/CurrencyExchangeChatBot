@@ -1,7 +1,7 @@
 var builder = require('botbuilder');
-var CurrenciesHeld = require('./CurrenciesHeld');
 var ExchangeRate = require('./ExchangeRate');
-
+var ConvertCurrency = require('./ConvertCurrency');
+var CurrenciesHeld = require('./CurrenciesHeld');
 
 
 exports.startDialog = function(bot){
@@ -50,11 +50,10 @@ exports.startDialog = function(bot){
                             session.conversationData["username"] = results.response;
                         }
 
-                        var currencyEntities = builder.EntityRecognizer.findAllEntities(session.dialogData.args.intent.entities, 'builtin.currency');
-                        console.log(currencyEntities);
+                        var currencyEntities = builder.EntityRecognizer.findAllEntities(session.dialogData.args.intent.entities, 'currency');
+                        var numberEntity = builder.EntityRecognizer.findAllEntities(session.dialogData.args.intent.entities, 'builtin.number');
                         
-                        session.send("Retrieving exchange rate for" );
-                        ExchangeRate.showExchangeRate(session, session.conversationData["username"]);  // <---- THIS LINE HERE IS WHAT WE NEED 
+                        ExchangeRate.getConvertedAmount(session, session.conversationData["username"], currencyEntities, numberEntity);  // <---- THIS LINE HERE IS WHAT WE NEED 
                 }
         
             ]).triggerAction({
