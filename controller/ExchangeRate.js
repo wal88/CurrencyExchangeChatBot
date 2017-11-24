@@ -31,7 +31,7 @@ function handleExchangeRate(message, session) {
     console.log(currencyTableData);
     
     if (!currencyTableData.success) {
-        session.send("Error retrieving exchange rates, API may be down. Please try again");
+        session.send("Error retrieving exchange rates. API may be down (please try again), or subscription has ended (please contact Administrator).");
         return; // if query is unsuccessful, stop here
     }
 
