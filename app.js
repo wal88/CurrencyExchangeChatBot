@@ -38,7 +38,6 @@ var bot = new builder.UniversalBot(connector, function (session) {
         // session.send( "contentType: "+attachment.contentType
         //                    +"\ncontentUrl: "+attachment.contentUrl
         //                    +"\nname: "+attachment.name);
-        session.send("hi");
 
        microsoftComputerVision.orcImage({
             "Ocp-Apim-Subscription-Key": "92c7a34041824d56a62bf3b15e831f7c",
@@ -55,6 +54,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
             session.send(result);
 
         }).catch((err) => {
+            session.send(err);
             throw err;
         })
 
