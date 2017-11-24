@@ -1,7 +1,7 @@
 var RestClient = require('../API/Restclient');
 
 exports.showExchangeRate = function (session, username, currencyEntities){
-    var from, to='';
+    var base, to='';
 
     if (currencyEntities.length==0) {
         session.send("No currencies detected, please state currencies desired for exchange rates using three letter currency codes"); 
@@ -10,18 +10,18 @@ exports.showExchangeRate = function (session, username, currencyEntities){
     
     // if only one currency provided, give exchange rate against NZD by default
     if(currencyEntities.length == 1) {
-        from="NZD", to=currencyEntities[0].entity;
+        base="NZD", to=currencyEntities[0].entity;
     } else if (currencyEntities.length == 2) {
-        from=currencyEntities[0].entity, to=currencyEntities[1].entity;
+        base=currencyEntities[0].entity, to=currencyEntities[1].entity;
     } else { // multiple currencies will give exchange rates against the first one
-        from=currencyEntities[0].entity; // base currency
+        base=currencyEntities[0].entity; // base currency
         for (let i = 1; i<currencyEntities.length; i++) {
             to+=currencyEntities[i].entity+','; // comma separated currencies against the base
         }
     }
     
     var url = "http://apilayer.net/api/live?access_key=8db6106aae6236f2cee4620f4965f956"
-                +"&source="+from 
+                +"&source="+base 
                 +"&currencies="+to;
     RestClient.getExchangeRate(url, session, handleExchangeRate)
 };
