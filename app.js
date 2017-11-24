@@ -55,7 +55,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
 
         }).catch((err) => {
             session.send(err);
-            throw err;
+            // throw err;
         })
 
     } else {
