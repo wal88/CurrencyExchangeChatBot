@@ -42,7 +42,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
        microsoftComputerVision.orcImage({
             "Ocp-Apim-Subscription-Key": "92c7a34041824d56a62bf3b15e831f7c",
             "request-origin": "westcentralus",
-            "content-type": "application/octet-stream",
+            "content-type": "application/json",
             "url": attachment.contentUrl,
             "language": "en",
             "detect-orientation": true
