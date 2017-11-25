@@ -28,7 +28,7 @@ exports.startDialog = function (bot) {
 
             var currencyEntities = builder.EntityRecognizer.findAllEntities(session.dialogData.args.intent.entities, 'currency');
 
-            ExchangeRate.showExchangeRate(session, session.conversationData["username"], currencyEntities);  // <---- THIS LINE HERE IS WHAT WE NEED 
+            ExchangeRate.showExchangeRate(session, session.conversationData["username"], currencyEntities);
         }
 
     ]).triggerAction({
@@ -45,7 +45,7 @@ exports.startDialog = function (bot) {
             var currencyEntities = builder.EntityRecognizer.findAllEntities(session.dialogData.args.intent.entities, 'currency');
             var numberEntity = builder.EntityRecognizer.findAllEntities(session.dialogData.args.intent.entities, 'builtin.number');
 
-            ConvertCurrency.getConvertedAmount(session, currencyEntities, numberEntity);  // <---- THIS LINE HERE IS WHAT WE NEED 
+            ConvertCurrency.getConvertedAmount(session, currencyEntities, numberEntity);
         }
 
     ]).triggerAction({
@@ -75,7 +75,5 @@ exports.startDialog = function (bot) {
     ]).triggerAction({
         matches: 'ShowCurrenciesHeld'
     });
-
-
 
 }
