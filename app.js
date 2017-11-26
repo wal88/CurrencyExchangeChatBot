@@ -20,47 +20,73 @@ server.post('/api/messages', connector.listen());
 
 var bot = new builder.UniversalBot(connector, [
     (session) => {
+        session.sendTyping();
         var attachments = session.message.attachments;
+
         if (attachments && attachments.length > 0) {
+            session.dialogData.attachment = attachments[0];
 
-            var attachment = attachments[0];
-            session.beginDialog('getCurrencyDirection', attachment);
+            OcrImage.ocrImage(session, 'USD', 'nzd', session.dialogData.attachment); return; //delete
 
-            var currencyDirection = session.userData.currencyDirection;
+            session.beginDialog('getCurrencyDirectionFrom');
         } else {
-            session.send("Sorry I didn't understand that. I can help you with any of these areas:");
+            session.send("I can help you with any of these areas:"); // if welcomeIntent made, put this back: Sorry I didn't understand that. 
         }
     },
     (session, results) => {
-        console.log(currencyDirection.from + " and " + currencyDirection.to);
+        session.dialogData.currencyDirectionFrom = results.response;
+        session.beginDialog('getCurrencyDirectionTo');
+    },
+    (session, results) => {
+        session.dialogData.currencyDirectionTo = results.response;
+        var from = session.dialogData.currencyDirectionFrom, to = session.dialogData.currencyDirectionTo;
+        session.send('Converting all prices from the original currency of '+from+' to the target currency of '+to+', please wait..');
 
-        // OcrImage.ocrImage(attachment, session);
-
+        OcrImage.ocrImage(session, from, to, session.dialogData.attachment);
     }
 
 
 ]);
 
-bot.dialog('getCurrencyDirection', [
+bot.dialog('getCurrencyDirectionFrom', [
     (session, args, next) => {
-        session.dialogData.currencyDirection = args || {};
 
-        builder.Prompts.text(session, `What's your name?`);
-
+        if (args && args.repromptFrom) {
+            builder.Prompts.text(session, "Please enter the three letter currency code that the prices are in, or say cancel to stop processing this image")
+        } else {
+            builder.Prompts.text(session, 'What is the currency of the prices or amounts in the image?');
+        }
     },
     (session, results, next) => {
-        if (results.response) {
-            session.dialogData.currencyDirection.from = results.response;
+        if (results.response && RegExp("end|stop|quit|cancel|restart").test(results.response)) {
+            session.endConversation();
+        } else if (results.response && results.response.length != 3) {
+            session.replaceDialog('getCurrencyDirectionFrom', { repromptFrom: true });
+        } else {
+            session.endDialogWithResult(results);
         }
-        builder.Prompts.text(session, `What company do you work for?`);
-
-    },
-    (session, results) => {
-        if (results.response) {
-            session.dialogData.currencyDirection.to = results.response;
-        }
-        session.endDialogWithResult({ response: session.dialogData.currencyDirection });
     }
-])
+]);
+
+
+bot.dialog('getCurrencyDirectionTo', [
+    (session, args, next) => {
+        // session.dialogData.currencyDirection = args || {};
+        if (args && args.repromptTo) {
+            builder.Prompts.text(session, 'Please end three letter currency code that you want to convert all prices to, or say stop to cancel processing image');
+        } else {
+            builder.Prompts.text(session, 'Which currency do you want to convert them to?');
+        }
+    },
+    (session, results, next) => {
+        if (results.response && RegExp("end|stop|quit|cancel|restart").test(results.response)) {
+            session.endConversation();
+        } else if (results.response.length != 3) {
+            session.replaceDialog('getCurrencyDirectionTo', { repromptTo: true });
+        } else {
+            session.endDialogWithResult(results);
+        }
+    } 
+]);
 
 luis.startDialog(bot);

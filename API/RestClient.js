@@ -21,3 +21,16 @@ exports.getExchangeRate = function (url, session, callback) {
     });
 };
 
+var convertAmount = function(url){
+    return new Promise(function (resolve, reject) {
+        request.get(url, function (err, res, body) {
+            if (err) {
+            console.log(err);
+            reject(err);
+        } else { 
+                resolve(body);
+            }
+        });
+    });
+}
+exports.convertAmount = convertAmount;

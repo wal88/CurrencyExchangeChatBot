@@ -14,18 +14,7 @@ exports.startDialog = function (bot) {
 
         function (session, args, next) {
             session.dialogData.args = args || {};
-            if (!session.conversationData["username"]) {
-                builder.Prompts.text(session, "Enter a username to setup your account.");
-            } else {
-                next(); // Skip if we already have this info.
-            }
-        },
-
-        function (session, results, next) {
-            if (results.response) {
-                session.conversationData["username"] = results.response;
-            }
-
+            
             var currencyEntities = builder.EntityRecognizer.findAllEntities(session.dialogData.args.intent.entities, 'currency');
 
             ExchangeRate.showExchangeRate(session, session.conversationData["username"], currencyEntities);
