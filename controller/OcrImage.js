@@ -100,7 +100,7 @@ function overlayConvertedAmounts(session, amounts) {
     // Cloudinary API call, overlays texts and returns the new image
     cloudinary.v2.uploader.upload(image.contentUrl, 
         options,
-
+    
         function (error, overlayedImage) {
             if (error) {
                 console.log(error);

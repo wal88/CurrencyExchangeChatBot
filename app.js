@@ -26,8 +26,6 @@ var bot = new builder.UniversalBot(connector, [
         if (attachments && attachments.length > 0) {
             session.dialogData.attachment = attachments[0];
 
-            OcrImage.ocrImage(session, 'USD', 'nzd', session.dialogData.attachment); return; //delete
-
             session.beginDialog('getCurrencyDirectionFrom');
         } else {
             session.send("I can help you with any of these areas:"); // if welcomeIntent made, put this back: Sorry I didn't understand that. 
@@ -38,10 +36,11 @@ var bot = new builder.UniversalBot(connector, [
         session.beginDialog('getCurrencyDirectionTo');
     },
     (session, results) => {
+        session.send('Converting all prices from the original currency of '+from+' to the target currency of '+to+', please wait..');        
+        session.sendTyping();
         session.dialogData.currencyDirectionTo = results.response;
         var from = session.dialogData.currencyDirectionFrom, to = session.dialogData.currencyDirectionTo;
-        session.send('Converting all prices from the original currency of '+from+' to the target currency of '+to+', please wait..');
-
+        
         OcrImage.ocrImage(session, from, to, session.dialogData.attachment);
     }
 
