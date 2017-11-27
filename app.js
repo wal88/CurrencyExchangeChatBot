@@ -19,31 +19,39 @@ server.post('/api/messages', connector.listen());
 
 
 var bot = new builder.UniversalBot(connector, [
+
     (session) => {
         session.sendTyping();
+        // if there is an attachment, ask for currency direction then begin OCR afterwards
         var attachments = session.message.attachments;
 
         if (attachments && attachments.length > 0) {
             session.dialogData.attachment = attachments[0];
-
+            
             session.beginDialog('getCurrencyDirectionFrom');
+
+            //else, user's input could not be understood, re-annouce bot's abilities
         } else {
-            session.send("I can help you with any of these areas:"); // if welcomeIntent made, put this back: Sorry I didn't understand that. 
+            session.send(new builder.Message(session)
+            .text("Sorry, I didn't understand. I can help you with any of these tasks: " + botFunctions)
+            .textFormat("markdown")
+            .textLocale("en-us"));
         }
     },
+
     (session, results) => {
-        session.dialogData.currencyDirectionFrom = results.response;
+        session.dialogData.currencyDirectionFrom = results.response.trim();
         session.beginDialog('getCurrencyDirectionTo');
     },
+
     (session, results) => {
-        session.dialogData.currencyDirectionTo = results.response;
+        session.dialogData.currencyDirectionTo = results.response.trim();
         var from = session.dialogData.currencyDirectionFrom, to = session.dialogData.currencyDirectionTo;
         session.send('Converting all prices from the original currency of '+from+' to the target currency of '+to+', please wait..');        
         session.sendTyping();
         
         OcrImage.ocrImage(session, from, to, session.dialogData.attachment);
     }
-
 
 ]);
 
@@ -59,7 +67,7 @@ bot.dialog('getCurrencyDirectionFrom', [
     (session, results, next) => {
         if (results.response && RegExp("end|stop|quit|cancel|restart").test(results.response)) {
             session.endConversation();
-        } else if (results.response && results.response.length != 3) {
+        } else if (!results.response || results.response.trim().length != 3) {
             session.replaceDialog('getCurrencyDirectionFrom', { repromptFrom: true });
         } else {
             session.endDialogWithResult(results);
@@ -80,7 +88,7 @@ bot.dialog('getCurrencyDirectionTo', [
     (session, results, next) => {
         if (results.response && RegExp("end|stop|quit|cancel|restart").test(results.response)) {
             session.endConversation();
-        } else if (results.response.length != 3) {
+        } else if (!results.response || results.response.trim().length != 3) {
             session.replaceDialog('getCurrencyDirectionTo', { repromptTo: true });
         } else {
             session.endDialogWithResult(results);
@@ -88,4 +96,28 @@ bot.dialog('getCurrencyDirectionTo', [
     } 
 ]);
 
+// Welcome message when user first connects
+bot.on('conversationUpdate', function (activity) {
+    // when user joins conversation, send instructions
+    if (activity.membersAdded) {
+        activity.membersAdded.forEach(function (identity) {
+            if (identity.id === activity.address.bot.id) {
+                var welcomeMsg = new builder.Message()
+                    .address(activity.address)
+                    .text("Hi there, I'm the Currency Bot. I can help you with the following things: \n ----" + botFunctions)
+                    .textFormat("markdown")
+                    .textLocale("en-us");
+                bot.send(welcomeMsg);
+            }
+        });
+    }
+});
+
 luis.startDialog(bot);
+
+var botFunctions = '\n * I can retrieve the latest exchange rate for one or more currency pairs'
+                  +'\n * I can convert an amount in any currency to another currency'
+                  +'\n * I can help you manage your currency reserves by storing and updating them'
+                  +'\n * I can calculate the total worth of your currency reserves into one currency'
+                  +'\n * If you send me an image, I can modify the image converting all prices to a new currency'
+                  ;
