@@ -8,7 +8,7 @@ exports.displayTableData = function (session, username){
 
 function handleTableData(message, session, username) {
     var currencyTableData = JSON.parse(message);
-    session.send(message); 
+    session.send(message);
     
     // var array = [];
     
