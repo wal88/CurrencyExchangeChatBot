@@ -113,63 +113,71 @@ exports.showReserves = function (session, body) {
 
 exports.calculateTotalValue = function (session, body, totalInThisCurrency) {
     userRow = JSON.parse(body);
-    let currencyHeroCards = [];
-    let receiptCardTotalValue = 
-    new builder.ReceiptCard(session)
-        .title('John Doe')
-        .facts([
-            builder.Fact.create(session, 'Converted to ', 'Currencies held')
-        ])
-        .items([
-            builder.ReceiptItem.create(session, "200", '100')
-                .quantity(368),
-            builder.ReceiptItem.create(session, '$ 45.00', 'App Service')
-                .quantity(720)
-        ])
-        .total('$ 90.95');
+    let itemsForRecieptCard = [];
+    let totalConvertedAmount = 0;
 
-    // for (let property in userRow) {
+    // get currency information for target currency from REST countries API
+    RestClient.getCurrencyCodeData(totalInThisCurrency).then(function (body) {
+        let countryInfo = JSON.parse(body);
+        let currencyInfo;
 
-    //     if (property.length == 3 && userRow[property]) {
-    //         let storedCurrency = property;
-    //         // get currency information from REST countries API
-    //         RestClient.getCurrencyCodeData(storedCurrency).then(function (body) {
-    //             let countryInfo = JSON.parse(body);
-    //             let currencyInfo;
-    //             //unfortunately there's a list of currencies for some countries (even though we query with one currency), 
-    //             // so just make sure to grab the right currency here
-    //             for (let currency of countryInfo[0].currencies) {
-    //                 if (currency.code == storedCurrency.toUpperCase()) {
-    //                     currencyInfo = currency; break;
-    //                 }
-    //             }
-    //             currencyHeroCards.push(new builder.ThumbnailCard(session)
-    //                 .title(currencyInfo.symbol + userRow[storedCurrency])
-    //                 .subtitle(currencyInfo.code)
-    //                 .images([builder.CardImage.create(session, 'https://www.centralcharts.com/medias/logo_flags/' + currencyInfo.code + '.png')])
-    //                 .text(currencyInfo.name)
-    //             );
-    //         });
-    //     }
-    // }
-    // wait for hero cards to load
-    setTimeout(function () {
-        var msg = new builder.Message(session).addAttachment(receiptCardTotalValue);
-        session.send(msg).endDialog();
-    }, 1500);
+        //unfortunately there's a list of currencies for some countries (even though we query with one currency), 
+        // so just make sure to grab the right currency here
+        for (let currency of countryInfo[0].currencies) {
+            if (currency.code == totalInThisCurrency.toUpperCase()) {
+                currencyInfo = currency; break;
+            }
+        }
 
+        let convertedAmountsCard = {
+            contentType: "application/vnd.microsoft.card.adaptive",
+            content: {
+                type: "AdaptiveCard",
+                body: [
+                    {
+                        "type": "TextBlock",
+                        "text": "Total worth converted to " + currencyInfo.name + ':',
+                        "size": "large",
+                        "weight": "bolder"
+                    },
+                    {
+                        "type": "FactSet",
+                        "facts": [{
+                            "title": "Currencies stored",
+                            "value": "Converts to"
+                        }
+
+                        ]
+                    }
+                ]
+            }
+        };
+
+        for (let property in userRow) {
+
+            if (property.length == 3 && userRow[property]) {
+                let storedCurrency = property;
+
+                RestClient.convertSingleAmount(session, userRow[property], storedCurrency, totalInThisCurrency).then(function (convertedAmount) {
+
+                    convertedAmountsCard.content.body[1].facts.push({
+                        "title": storedCurrency.toUpperCase() + userRow[storedCurrency],
+                        "value": currencyInfo.symbol + convertedAmount
+                    });
+                    totalConvertedAmount += convertedAmount;
+                });
+            }
+        }
+
+        // wait for values to convert
+        setTimeout(function () {
+            convertedAmountsCard.content.body[1].facts.push({
+                "title": 'Total in ' + currencyInfo.code,
+                "value": currencyInfo.symbol + totalConvertedAmount
+            });
+            var msg = new builder.Message(session).addAttachment(convertedAmountsCard);
+            session.send(msg).endDialog();
+        }, 1500);
+    });
     return;
-
-    // new builder.ReceiptCard(session)
-    //     .title('John Doe')
-    //     .facts([
-    //         builder.Fact.create(session, 'Converted to ' + totalInThisCurrency, 'Currencies held')
-    //     ])
-    //     .items([
-    //         builder.ReceiptItem.create(session, convertedAmount, originalAmount)
-    //             .quantity(368),
-    //         builder.ReceiptItem.create(session, '$ 45.00', 'App Service')
-    //             .quantity(720)
-    //     ])
-    //     .total('$ 90.95');
 }

@@ -66,7 +66,7 @@ exports.postNewAccount = postNewAccount;
 
 var updateAccount = function (amount, currency, id) {
     return new Promise(function (resolve, reject) {
-        
+
         var options = {
             url: 'http://walapp.azurewebsites.net/tables/CurrencyTable/' + id, // need to use ID to make the PATCH request
             method: 'PATCH',
@@ -78,7 +78,7 @@ var updateAccount = function (amount, currency, id) {
                 [currency]: amount
             }
         };
-        
+
         request(options, function (error, response, body) {
             if (!error && response.statusCode == 200 || response.statusCode == 201) {
                 resolve(true);
@@ -92,7 +92,7 @@ exports.updateAccount = updateAccount;
 
 var getUserData = function (id) {
     return new Promise(function (resolve, reject) {
-        request.get('http://walapp.azurewebsites.net/tables/CurrencyTable/'+id, { 'headers': { 'ZUMO-API-VERSION': '2.0.0' } }, function (err, res, body) {
+        request.get('http://walapp.azurewebsites.net/tables/CurrencyTable/' + id, { 'headers': { 'ZUMO-API-VERSION': '2.0.0' } }, function (err, res, body) {
             if (err) {
                 console.log(err);
                 reject(err);
@@ -106,7 +106,7 @@ exports.getUserData = getUserData;
 
 var getCurrencyCodeData = function (code) {
     return new Promise(function (resolve, reject) {
-        request.get('https://restcountries.eu/rest/v2/currency/'+code, function (err, res, body) {
+        request.get('https://restcountries.eu/rest/v2/currency/' + code, function (err, res, body) {
             if (err) {
                 console.log(err);
                 reject(err);
@@ -117,3 +117,26 @@ var getCurrencyCodeData = function (code) {
     });
 }
 exports.getCurrencyCodeData = getCurrencyCodeData;
+
+// this function is used to convert single amount
+var convertSingleAmount = function (session, amount, from, to) {
+    return new Promise(function (resolve, reject) {
+
+        let url = "https://apilayer.net/api/convert?access_key=8db6106aae6236f2cee4620f4965f956"
+            + "&from=" + from
+            + "&to=" + to
+            + "&amount=" + amount;
+        
+        convertAmount(url).then(function (message) {
+            let body = JSON.parse(message);
+
+            if (!body.success) {
+                session.send("Error retrieving exchange rates. API may be down (please try again), or subscription has ended (please contact Administrator).");
+                return; // if query is unsuccessful, stop here
+            }
+            let convertedAmount = body.result.toFixed(2); // trim result to 2 decimal places
+            resolve(convertedAmount);
+        })
+    });
+}
+exports.convertSingleAmount = convertSingleAmount;
