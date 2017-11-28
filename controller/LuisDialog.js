@@ -242,7 +242,6 @@ exports.startDialog = function (bot) {
         function (session, results, next) {
             session.send("Retrieving your currencies stored");
 
-            let currenciesStored = [];
             let username = session.conversationData["currentUsername"];
 
             // get row's id first
@@ -260,4 +259,79 @@ exports.startDialog = function (bot) {
     ]).triggerAction({
         matches: 'ShowCurrenciesHeld'
     });
+
+    // Bot dialog when user wants to calculate the total value of their stored currencies based on the latest rate of on currency
+    bot.dialog('CalculateTotalWorth', [
+
+        function (session, args, next) {
+            session.dialogData.args = args || {};
+            var currencyEntities = builder.EntityRecognizer.findAllEntities(session.dialogData.args.intent.entities, 'currency');
+            console.log(currencyEntities);
+            
+            if (currencyEntities.length != 0) {
+                session.dialogData.currency = currencyEntities[0].entity;
+            }
+
+            if (!session.conversationData["loggedIn"]) {
+                session.beginDialog('LogInOrCreateAccount');
+            } else {
+                next(); // Skip if user logged in
+            }
+        },
+
+        function (session, results, next) {
+            //check if the user has specified currency they want to convert to
+            if (!session.dialogData.currency) {
+                session.beginDialog('PromptForCurrency');
+            } else {
+                next();
+            }
+        },
+
+        function (session, results, next) {
+
+            let totalInThisCurrency = session.dialogData.currency;
+            session.send("Calculating the total value of your stored currencies into " + totalInThisCurrency);
+            session.sendTyping();
+
+            let username = session.conversationData["currentUsername"];
+
+            // get row's id first
+            CurrencyReserves.getId(username).then(function (id) {
+                // now use id to get data for this user
+                RestClient.getUserData(id).then(function (body) {
+                    if (body) {
+                        CurrencyReserves.calculateTotalValue(session, body, totalInThisCurrency);
+                    } else {
+                        session.send('Could not calculate total value due to database error, please try again');
+                    }
+                });
+            });
+        }
+    ]).triggerAction({
+        matches: 'CalculateTotalWorth'
+    });
+
+    // use this dialog if user hasn't given a currency for a task that needs it
+    bot.dialog('PromptForCurrency', [
+        (session, args, next) => {
+
+            if (args && args.reprompt) {
+                builder.Prompts.text(session, "Please enter a 3 letter currency code to proceed, or say cancel if you do not want to continue");
+            } else {
+                builder.Prompts.text(session, 'Please enter the currency you would like to use for this task');
+            }
+        },
+        (session, results, next) => {
+            if (results.response && RegExp("end|stop|quit|cancel|restart").test(results.response)) {
+                session.endDialog();
+            } else if (!results.response || results.response.trim().length != 3) {
+                session.replaceDialog('PromptForCurrency', { reprompt: true });
+            } else {
+                session.dialogData.currency = results.response;
+                session.endDialogWithResult(results);
+            }
+        }
+    ]);
+
 }

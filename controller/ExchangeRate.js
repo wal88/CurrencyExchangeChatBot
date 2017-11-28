@@ -34,21 +34,13 @@ function handleExchangeRate(message, session) {
         return; // if query is unsuccessful, stop here
     }
 
+    //change to hero cards if time left
+
     var rates = currencyTableData.quotes;
 
     for (let exchangePair in rates) {
         
         session.send(exchangePair + " is " + rates[exchangePair]);
     }
-
-    // var array = [];
-    
-    // for (var index in currencyTableData) {
-    //     // var usernameReceived = currencyTableData[index].name;
-    //     for(let itemProperty in currencyTableData[index]) {
-    //         console.log("property name: " +itemProperty + ", value: "+currencyTableData[index][itemProperty]);
-    //     }
-    // }
-    
-    //session.send('');                
+    session.endDialog();
 } 

@@ -92,11 +92,10 @@ exports.showReserves = function (session, body) {
                         currencyInfo = currency; break;
                     }
                 }
-
                 currencyHeroCards.push(new builder.ThumbnailCard(session)
                     .title(currencyInfo.symbol + userRow[storedCurrency])
                     .subtitle(currencyInfo.code)
-                    .images([builder.CardImage.create(session, 'https://www.centralcharts.com/medias/logo_flags/'+currencyInfo.code+'.png')])
+                    .images([builder.CardImage.create(session, 'https://www.centralcharts.com/medias/logo_flags/' + currencyInfo.code + '.png')])
                     .text(currencyInfo.name)
                 );
             });
@@ -104,10 +103,73 @@ exports.showReserves = function (session, body) {
     }
     session.sendTyping();
     // wait for hero cards to load
-    setTimeout(function() {
+    setTimeout(function () {
         var msg = new builder.Message(session);
-        msg.attachmentLayout(builder.AttachmentLayout.carousel)    
+        msg.attachmentLayout(builder.AttachmentLayout.carousel)
         msg.attachments(currencyHeroCards);
         session.send(msg).endDialog();
     }, 1500);
+}
+
+exports.calculateTotalValue = function (session, body, totalInThisCurrency) {
+    userRow = JSON.parse(body);
+    let currencyHeroCards = [];
+    let receiptCardTotalValue = 
+    new builder.ReceiptCard(session)
+        .title('John Doe')
+        .facts([
+            builder.Fact.create(session, 'Converted to ', 'Currencies held')
+        ])
+        .items([
+            builder.ReceiptItem.create(session, "200", '100')
+                .quantity(368),
+            builder.ReceiptItem.create(session, '$ 45.00', 'App Service')
+                .quantity(720)
+        ])
+        .total('$ 90.95');
+
+    // for (let property in userRow) {
+
+    //     if (property.length == 3 && userRow[property]) {
+    //         let storedCurrency = property;
+    //         // get currency information from REST countries API
+    //         RestClient.getCurrencyCodeData(storedCurrency).then(function (body) {
+    //             let countryInfo = JSON.parse(body);
+    //             let currencyInfo;
+    //             //unfortunately there's a list of currencies for some countries (even though we query with one currency), 
+    //             // so just make sure to grab the right currency here
+    //             for (let currency of countryInfo[0].currencies) {
+    //                 if (currency.code == storedCurrency.toUpperCase()) {
+    //                     currencyInfo = currency; break;
+    //                 }
+    //             }
+    //             currencyHeroCards.push(new builder.ThumbnailCard(session)
+    //                 .title(currencyInfo.symbol + userRow[storedCurrency])
+    //                 .subtitle(currencyInfo.code)
+    //                 .images([builder.CardImage.create(session, 'https://www.centralcharts.com/medias/logo_flags/' + currencyInfo.code + '.png')])
+    //                 .text(currencyInfo.name)
+    //             );
+    //         });
+    //     }
+    // }
+    // wait for hero cards to load
+    setTimeout(function () {
+        var msg = new builder.Message(session).addAttachment(receiptCardTotalValue);
+        session.send(msg).endDialog();
+    }, 1500);
+
+    return;
+
+    // new builder.ReceiptCard(session)
+    //     .title('John Doe')
+    //     .facts([
+    //         builder.Fact.create(session, 'Converted to ' + totalInThisCurrency, 'Currencies held')
+    //     ])
+    //     .items([
+    //         builder.ReceiptItem.create(session, convertedAmount, originalAmount)
+    //             .quantity(368),
+    //         builder.ReceiptItem.create(session, '$ 45.00', 'App Service')
+    //             .quantity(720)
+    //     ])
+    //     .total('$ 90.95');
 }
