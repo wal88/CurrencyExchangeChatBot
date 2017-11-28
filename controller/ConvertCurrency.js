@@ -64,6 +64,7 @@ function handleConvertedAmount(message, session) {
     var convertedAmount = body.result.toFixed(2); // trim result to 2 decimal places
     var query = body.query;
     session.send(query.amount + ' ' + query.from.toUpperCase() + " converts to: " + convertedAmount + ' ' + query.to.toUpperCase());
+    session.endDialog();
 }
 
 function isClose(number) {
