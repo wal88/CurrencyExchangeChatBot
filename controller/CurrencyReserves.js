@@ -164,7 +164,7 @@ exports.calculateTotalValue = function (session, body, totalInThisCurrency) {
                         "title": storedCurrency.toUpperCase() + userRow[storedCurrency],
                         "value": currencyInfo.symbol + convertedAmount
                     });
-                    totalConvertedAmount += convertedAmount;
+                    totalConvertedAmount += parseFloat(convertedAmount);
                 });
             }
         }
@@ -173,7 +173,7 @@ exports.calculateTotalValue = function (session, body, totalInThisCurrency) {
         setTimeout(function () {
             convertedAmountsCard.content.body[1].facts.push({
                 "title": 'Total in ' + currencyInfo.code,
-                "value": currencyInfo.symbol + totalConvertedAmount
+                "value": currencyInfo.symbol + totalConvertedAmount.toFixed(2)
             });
             var msg = new builder.Message(session).addAttachment(convertedAmountsCard);
             session.send(msg).endDialog();

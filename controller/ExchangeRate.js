@@ -39,8 +39,8 @@ function handleExchangeRate(message, session) {
     var rates = currencyTableData.quotes;
 
     for (let exchangePair in rates) {
-        
-        session.send(exchangePair + " is " + rates[exchangePair]);
+        let exchangePairSlash = exchangePair.substring(0,3) + '/' + exchangePair.substring(3);
+        session.send('The current ' + exchangePairSlash + " rate is " + rates[exchangePair].toFixed(3));
     }
     session.endDialog();
 } 
