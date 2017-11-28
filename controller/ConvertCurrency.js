@@ -49,14 +49,12 @@ exports.getConvertedAmount = function (session, currencyEntities, numberEntity) 
         + "&from=" + from
         + "&to=" + to
         + "&amount=" + amount;
-    // console.log("url is: " + url);
 
     RestClient.getExchangeRate(url, session, handleConvertedAmount)
 };
 
 function handleConvertedAmount(message, session) {
     var body = JSON.parse(message);
-    // console.log(body);
 
     if (!body.success) {
         session.send("Error retrieving exchange rates. API may be down (please try again), or subscription has ended (please contact Administrator).");

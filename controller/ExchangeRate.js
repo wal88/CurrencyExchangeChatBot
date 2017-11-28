@@ -28,7 +28,6 @@ exports.showExchangeRate = function (session, username, currencyEntities){
 
 function handleExchangeRate(message, session) {
     var currencyTableData = JSON.parse(message);
-    console.log(currencyTableData);
     
     if (!currencyTableData.success) {
         session.send("Error retrieving exchange rates. API may be down (please try again), or subscription has ended (please contact Administrator).");
