@@ -108,7 +108,7 @@ exports.showReserves = function (session, body) {
         msg.attachmentLayout(builder.AttachmentLayout.carousel)
         msg.attachments(currencyHeroCards);
         session.send(msg).endDialog();
-    }, 1500);
+    }, 2500);
 }
 
 exports.calculateTotalValue = function (session, body, totalInThisCurrency) {
